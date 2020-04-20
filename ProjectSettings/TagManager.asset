@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platform
-  - Character
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -15,9 +16,9 @@ TagManager:
   - UI
   - 
   - 
-  - Character
+  - Player
+  - Enemy
   - Platform
-  - 
   - 
   - 
   - 

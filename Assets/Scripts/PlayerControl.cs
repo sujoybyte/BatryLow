@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float jumpSpeed = 8f, moveSpeed = 5f;
     private SpriteRenderer playerSprite = null;
@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private Transform playerFeet = null;
     public LayerMask overlapingLayer;
     private float maxJump = 2;
+
 
     void Start()
     {
@@ -42,6 +43,14 @@ public class Controller : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpSpeed;
             maxJump--;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }
