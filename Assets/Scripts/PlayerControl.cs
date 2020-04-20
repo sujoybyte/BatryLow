@@ -13,13 +13,18 @@ public class PlayerControl : MonoBehaviour
     
     [SerializeField] private GameObject shooter = null;
     [SerializeField] private Transform shootPoint = null;
-    //private float dShooterPointX;
     private GameObject shooterCopy;
+
+    public float playerHealth = 1f;
+    public float healthReduceRate = 0.05f;
+    public GameObject canvasObject;
+    [HideInInspector] public CanvasManager canvasControl;
 
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
-        //dShooterPointX = shootPoint.position.x;
+        canvasControl = GetComponent<CanvasManager>();
+
     }
 
     private void Update()
@@ -70,10 +75,17 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        GameObject bullet = collision.gameObject;
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(collision.gameObject);
+            Destroy(bullet);
+
             // player health reduce
+            playerHealth -= healthReduceRate;
+            if (playerHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxControl : MonoBehaviour
+public class BulletControl : MonoBehaviour
 {
     void Start()
     {

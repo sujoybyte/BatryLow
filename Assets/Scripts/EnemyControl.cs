@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyControl : MonoBehaviour
 {
-    //[SerializeField] private Transform moveMax = null, moveMin = null;
     [SerializeField] private Transform raderStart = null;
     [SerializeField] private Vector2 radarArea = Vector2.one;
     public LayerMask radarOverlapLayer;
@@ -16,9 +16,15 @@ public class EnemyControl : MonoBehaviour
     private GameObject shooterCopy;
     [SerializeField] private float shootSpeed = 200f;
 
+    public float enemyHealth = 1f;
+    public float healthReduceRate = 0.05f;
+    public GameObject canvasObject;
+    [HideInInspector] public CanvasManager canvasControl;
+
     private void Start()
     {
         lastShotTime = Time.time;
+        canvasControl = GetComponent<CanvasManager>();
     }
 
     private void FixedUpdate()
@@ -58,20 +64,19 @@ public class EnemyControl : MonoBehaviour
         Gizmos.DrawWireCube(raderStart.position, radarArea);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet Area"))
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        GameObject bullet = collision.gameObject;
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            Destroy(bullet);
+
             // enemy health reduce
+            enemyHealth -= healthReduceRate;
+            if (enemyHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
