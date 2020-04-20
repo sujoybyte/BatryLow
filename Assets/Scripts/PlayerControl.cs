@@ -6,15 +6,20 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float jumpSpeed = 8f, moveSpeed = 5f;
     private SpriteRenderer playerSprite = null;
-    private bool playerOnGround;
+    private bool playerOnPlatform;
     [SerializeField] private Transform playerFeet = null;
     public LayerMask overlapingLayer;
     private float maxJump = 2;
-
+    
+    [SerializeField] private GameObject shooter = null;
+    [SerializeField] private Transform shootPoint = null;
+    //private float dShooterPointX;
+    private GameObject shooterCopy;
 
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
+        //dShooterPointX = shootPoint.position.x;
     }
 
     private void Update()
@@ -25,24 +30,41 @@ public class PlayerControl : MonoBehaviour
         {
             transform.Translate(new Vector2(moveDirection * Time.deltaTime * moveSpeed, 0f));
             playerSprite.flipX = true;
+            shootPoint.localPosition = new Vector2(-1f, shootPoint.localPosition.y);
         }
         else if (Input.GetKeyDown(KeyCode.D) || moveDirection > 0)
         {
             transform.Translate(new Vector2(moveDirection * Time.deltaTime * moveSpeed, 0f));
             playerSprite.flipX = false;
+            shootPoint.localPosition = new Vector2(1f, shootPoint.localPosition.y);
         }
     }
 
     private void FixedUpdate()
     {
-        playerOnGround = Physics2D.OverlapCircle(playerFeet.position, 0.4f, overlapingLayer);
-        if (playerOnGround) maxJump = 2;
+        // 
+        playerOnPlatform = Physics2D.OverlapCircle(playerFeet.position, 0.4f, overlapingLayer);
+        if (playerOnPlatform) maxJump = 2;
 
         // player jump
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && maxJump > 0)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpSpeed;
             maxJump--;
+        }
+
+        // player shoot
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("Player Shoot");
+            float direction = 1f;
+            if (!GetComponent<SpriteRenderer>().flipX)
+                direction = 1f;
+            else if (GetComponent<SpriteRenderer>().flipX)
+                direction = -1f;
+
+            shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
+            shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 200f, 0f));
         }
     }
 
@@ -51,6 +73,7 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
+            // player health reduce
         }
     }
 }
