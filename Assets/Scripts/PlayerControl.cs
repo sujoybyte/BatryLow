@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class PlayerControl : MonoBehaviour
     public float healthReduceRate = 0.05f;
     public GameObject canvasObject;
     [HideInInspector] public CanvasManager canvasControl;
+    [SerializeField] private GameObject helpText = null;
+    [SerializeField] private GameObject restart = null;
 
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
         canvasControl = GetComponent<CanvasManager>();
-
     }
 
     private void Update()
@@ -54,6 +56,8 @@ public class PlayerControl : MonoBehaviour
         // player jump
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && maxJump > 0)
         {
+            DisableHelpText();
+
             GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpSpeed;
             maxJump--;
         }
@@ -61,7 +65,8 @@ public class PlayerControl : MonoBehaviour
         // player shoot
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log("Player Shoot");
+            DisableHelpText();
+
             float direction = 1f;
             if (!GetComponent<SpriteRenderer>().flipX)
                 direction = 1f;
@@ -71,6 +76,11 @@ public class PlayerControl : MonoBehaviour
             shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
             shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 200f, 0f));
         }
+    }
+
+    public void DisableHelpText()
+    {
+        if (helpText.activeSelf) helpText.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -84,8 +94,20 @@ public class PlayerControl : MonoBehaviour
             playerHealth -= healthReduceRate;
             if (playerHealth <= 0)
             {
-                Destroy(gameObject);
+                restart.SetActive(true);
+                StartCoroutine(Restarting());
             }
         }
+        if (collision.gameObject.CompareTag("Orb"))
+        {
+            playerHealth += 0.2f;
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private IEnumerator Restarting()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
     }
 }

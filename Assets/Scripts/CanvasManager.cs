@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    public GameObject winner;
+    public GameObject enemy;
+
     [Header("Player")]
     public GameObject playerObject;
     [HideInInspector] public PlayerControl player;
@@ -21,30 +24,30 @@ public class CanvasManager : MonoBehaviour
     public Slider rEnemyHealth, gEnemyHealth, bEnemyHealth;
     public GameObject rEnemyFill, gEnemyFill, bEnemyFill;
 
-    [Space(1)]
-
-    [Header("Game")]
-    public bool rHealthReduce;
-    public bool gHealthReduce;
-    public bool bHealthReduce;
-
     void Start()
     {
         player = playerObject.GetComponent<PlayerControl>();
         rEnemy = rEnemyObject.GetComponent<EnemyControl>();
         gEnemy = gEnemyObject.GetComponent<EnemyControl>();
         bEnemy = bEnemyObject.GetComponent<EnemyControl>();
+        winner.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (enemy.GetComponentsInChildren<Transform>().Length == 0)
+        {
+            winner.SetActive(true);
+        }
+
         playerHealth.value = player.playerHealth;
         if (playerHealth.value <= 0)
         {
             playerFill.SetActive(false);
             // Loser
         }
+
         Enemy(rEnemyHealth, rEnemy, rEnemyFill);
         Enemy(gEnemyHealth, gEnemy, gEnemyFill);
         Enemy(bEnemyHealth, bEnemy, bEnemyFill);
@@ -53,10 +56,5 @@ public class CanvasManager : MonoBehaviour
     private void Enemy(Slider enemyHealth, EnemyControl enemy, GameObject enemyFill)
     {
         enemyHealth.value = enemy.enemyHealth;
-        if (enemyHealth.value <= 0)
-        {
-            enemyFill.SetActive(false);
-            // Winner Next level
-        }
     }
 }

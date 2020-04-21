@@ -20,6 +20,7 @@ public class EnemyControl : MonoBehaviour
     public float healthReduceRate = 0.05f;
     public GameObject canvasObject;
     [HideInInspector] public CanvasManager canvasControl;
+    [SerializeField] private GameObject orb = null;
 
     private void Start()
     {
@@ -75,6 +76,7 @@ public class EnemyControl : MonoBehaviour
             enemyHealth -= healthReduceRate;
             if (enemyHealth <= 0)
             {
+                Instantiate(orb, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
