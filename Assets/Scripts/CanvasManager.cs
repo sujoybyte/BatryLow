@@ -48,12 +48,12 @@ public class CanvasManager : MonoBehaviour
             // Loser
         }
 
-        Enemy(rEnemyHealth, rEnemy, rEnemyFill);
-        Enemy(gEnemyHealth, gEnemy, gEnemyFill);
-        Enemy(bEnemyHealth, bEnemy, bEnemyFill);
+        Enemy(rEnemyHealth, rEnemy);
+        Enemy(gEnemyHealth, gEnemy);
+        Enemy(bEnemyHealth, bEnemy);
     }
 
-    private void Enemy(Slider enemyHealth, EnemyControl enemy, GameObject enemyFill)
+    private void Enemy(Slider enemyHealth, EnemyControl enemy)
     {
         enemyHealth.value = enemy.enemyHealth;
     }

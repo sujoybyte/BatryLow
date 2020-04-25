@@ -12,7 +12,6 @@ public class GameControl : MonoBehaviour
     public GameObject aboutText;
     public GameObject winner;
     public GameObject restart;
-    public GameObject enemy;
 
     void Start()
     {
@@ -25,11 +24,6 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy.GetComponentsInChildren<Transform>().Length == 0)
-        {
-            winner.SetActive(true);
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             buttons.SetActive(true);

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyControl : MonoBehaviour
 {
+    public int enemyNumber;
     [SerializeField] private Transform raderStart = null;
     [SerializeField] private Vector2 radarArea = Vector2.one;
     public LayerMask radarOverlapLayer;
@@ -21,6 +22,7 @@ public class EnemyControl : MonoBehaviour
     public GameObject canvasObject;
     [HideInInspector] public CanvasManager canvasControl;
     [SerializeField] private GameObject orb = null;
+    public Slider rEnemySlider, gEnemySlider, bEnemySlider;
 
     private void Start()
     {
@@ -28,9 +30,14 @@ public class EnemyControl : MonoBehaviour
         canvasControl = GetComponent<CanvasManager>();
     }
 
+    private void Update()
+    {
+        
+
+    }
+
     private void FixedUpdate()
     {
-
         Collider2D radarCollider = Physics2D.OverlapBox(raderStart.position, radarArea, 0f, radarOverlapLayer);
         playerDetect = radarCollider;
 
@@ -42,7 +49,7 @@ public class EnemyControl : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
 
             Shoot();
-            lastShotTime = Time.time + 0.2f;
+            lastShotTime = Time.time + 0.4f;
         }
     }
 
@@ -58,7 +65,7 @@ public class EnemyControl : MonoBehaviour
         shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
         shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * shootSpeed, 0f));
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -73,10 +80,16 @@ public class EnemyControl : MonoBehaviour
             Destroy(bullet);
 
             // enemy health reduce
-            enemyHealth -= healthReduceRate;
+            if (enemyNumber < 2 || (enemyNumber == 2 && rEnemySlider.value == 0 && gEnemySlider.value == 0))
+                enemyHealth -= healthReduceRate;
+
             if (enemyHealth <= 0)
             {
-                Instantiate(orb, transform.position, transform.rotation);
+                if (enemyNumber < 2) Instantiate(orb, transform.position, transform.rotation);
+                else if (enemyNumber == 2)
+                {
+                    // win screen then destroy
+                }
                 Destroy(gameObject);
             }
         }
