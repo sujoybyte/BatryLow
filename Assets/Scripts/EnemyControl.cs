@@ -19,21 +19,13 @@ public class EnemyControl : MonoBehaviour
 
     public float enemyHealth = 1f;
     public float healthReduceRate = 0.05f;
-    public GameObject canvasObject;
-    [HideInInspector] public CanvasManager canvasControl;
+    public GameControl gameControl;
     [SerializeField] private GameObject orb = null;
     public Slider rEnemySlider, gEnemySlider, bEnemySlider;
 
     private void Start()
     {
         lastShotTime = Time.time;
-        canvasControl = GetComponent<CanvasManager>();
-    }
-
-    private void Update()
-    {
-        
-
     }
 
     private void FixedUpdate()
@@ -85,11 +77,9 @@ public class EnemyControl : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
-                if (enemyNumber < 2) Instantiate(orb, transform.position, transform.rotation);
-                else if (enemyNumber == 2)
-                {
-                    // win screen then destroy
-                }
+                if (enemyNumber == 2) gameControl.Win();
+                else if (enemyNumber < 2) Instantiate(orb, transform.position, transform.rotation);
+
                 Destroy(gameObject);
             }
         }

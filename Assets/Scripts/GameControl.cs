@@ -5,13 +5,10 @@ using UnityEngine;
 public class GameControl : MonoBehaviour
 {
     public Animator anim;
-    public GameObject menuUI;
-    public GameObject gameUI;
-    public GameObject helpText;
+    public GameObject menuUI, gameUI;
+    public GameObject helpText, aboutText;
     public GameObject buttons;
-    public GameObject aboutText;
-    public GameObject winner;
-    public GameObject restart;
+    public GameObject winner, restart;
 
     void Start()
     {
@@ -45,6 +42,15 @@ public class GameControl : MonoBehaviour
         gameUI.SetActive(true);
         menuUI.SetActive(false);
         helpText.SetActive(true);
+    }
+
+    public void Win()
+    {
+        Debug.Log("bffbrf");
+        winner.SetActive(true);
+        menuUI.SetActive(false);
+        gameUI.SetActive(false);
+        restart.SetActive(false);
     }
 
     public void About()
