@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class BulletControl : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet Area"))
