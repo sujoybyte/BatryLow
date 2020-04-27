@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3028759430020366053}
   - component: {fileID: 5362172322075102579}
   m_Layer: 0
-  m_Name: BulletRed
+  m_Name: BulletDailer
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6325d378ffd4a7149854cc740f5e1a45, type: 3}
-  m_Color: {r: 1, g: 0.110657394, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.5415597, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5362172322075102579
 MonoBehaviour:
   m_ObjectHideFlags: 0

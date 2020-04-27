@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float jumpSpeed = 8f, moveSpeed = 5f;
-    private SpriteRenderer playerSprite = null;
+    private SpriteRenderer playerSprite;
     private bool playerOnPlatform;
     [SerializeField] private Transform playerFeet = null;
     public LayerMask overlapingLayer;
@@ -67,9 +67,9 @@ public class PlayerControl : MonoBehaviour
         }
 
         // player shoot
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.S)) && Time.time > lastShotTime)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > lastShotTime && playerHealth > 0f)
         {
-            lastShotTime = Time.time + 0.1f;
+            lastShotTime = Time.time + 0.2f;
             Shot();
         }
     }
@@ -108,14 +108,13 @@ public class PlayerControl : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Orb"))
         {
-            playerHealth += 0.2f;
+            playerHealth += 0.3f;
             Destroy(collision.gameObject);
         }
     }
 
     private IEnumerator Restarting()
     {
-        Time.timeScale = 0;
         yield return new WaitForSeconds(2.2f);
         SceneManager.LoadScene(0);
     }

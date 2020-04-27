@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8528751948841796562}
   - component: {fileID: 8394571023418002997}
   m_Layer: 0
-  m_Name: BulletGreen
+  m_Name: BulletYellow
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8394571023418002997
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyControl : MonoBehaviour
 {
-    public int enemyNumber;
+    [SerializeField] private int enemyNumber = 0;
+    private SpriteRenderer enemySprite;
     [SerializeField] private Transform raderStart = null;
     [SerializeField] private Vector2 radarArea = Vector2.one;
     public LayerMask radarOverlapLayer;
@@ -13,20 +14,38 @@ public class EnemyControl : MonoBehaviour
     [SerializeField] private Animator animEnemy = null;
 
     private float lastShotTime;
+    [SerializeField] private float shootInterval = 0.2f;
     [SerializeField] private float shootSpeed = 100f;
     [SerializeField] private Transform shootPoint = null;
     [SerializeField] private GameObject shooter = null;
     private GameObject shooterCopy;
 
     public float enemyHealth = 1f;
-    public float healthReduceRate = 0.05f;
+    [SerializeField] private float healthReduceRate = 0.05f;
     public GameControl gameControl;
+    [SerializeField] private GameObject enemyNameText = null;
     [SerializeField] private GameObject orb = null;
     public Slider rEnemySlider, gEnemySlider, bEnemySlider;
 
     private void Start()
     {
         lastShotTime = Time.time;
+        enemySprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (enemyNumber == 2 && gEnemySlider.value == 0)
+        {
+            gEnemySlider.gameObject.SetActive(false);
+            enemySprite.color = new Color(1f, 0.6f, 0.6f);
+        }
+        if (enemyNumber == 2 && gEnemySlider.value == 0 && rEnemySlider.value == 0)
+        {
+            gEnemySlider.gameObject.SetActive(false);
+            rEnemySlider.gameObject.SetActive(false);
+            enemySprite.color = new Color(1f, 0f, 0f);
+        }
     }
 
     private void FixedUpdate()
@@ -39,12 +58,12 @@ public class EnemyControl : MonoBehaviour
             animEnemy.enabled = true;
 
             if (radarCollider.transform.position.x > transform.position.x)
-                GetComponent<SpriteRenderer>().flipX = true;
+                enemySprite.flipX = true;
             else if (radarCollider.transform.position.x < transform.position.x)
-                GetComponent<SpriteRenderer>().flipX = false;
+                enemySprite.flipX = false;
 
             Shoot();
-            lastShotTime = Time.time + 0.3f;
+            lastShotTime = Time.time + shootInterval;
         }
         else if (!playerDetect) animEnemy.enabled = false;
     }
@@ -52,12 +71,15 @@ public class EnemyControl : MonoBehaviour
     private void Shoot()
     {
         float direction = -1f;
-        if (GetComponent<SpriteRenderer>().flipX)
+        if (enemySprite.flipX)
             direction = 1f;
-        else if (!GetComponent<SpriteRenderer>().flipX)
+        else if (!enemySprite.flipX)
             direction = -1f;
 
         shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
+        if (enemyNumber == 0) shooterCopy.GetComponent<SpriteRenderer>().color = Color.green;
+        if (enemyNumber == 1) shooterCopy.GetComponent<SpriteRenderer>().color = Color.red;
+        if (enemyNumber == 2) shooterCopy.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 1f);
         shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * shootSpeed, 0f));
     }
     
@@ -83,7 +105,8 @@ public class EnemyControl : MonoBehaviour
                 if (enemyNumber == 2) gameControl.Win();
                 else if (enemyNumber < 2) Instantiate(orb, transform.position, transform.rotation);
 
-                Destroy(gameObject);
+                enemyNameText.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }
