@@ -4289,6 +4289,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968165781}
   m_CullTransparentMesh: 0
+--- !u!1 &978034492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 978034493}
+  m_Layer: 0
+  m_Name: DailerBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &978034493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978034492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2131568910}
+  - {fileID: 1025856384}
+  m_Father: {fileID: 1749601554}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007150608
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,6 +4620,7 @@ GameObject:
   - component: {fileID: 1025856382}
   - component: {fileID: 1025856381}
   - component: {fileID: 1025856380}
+  - component: {fileID: 1025856387}
   m_Layer: 9
   m_Name: DailerBlue
   m_TagString: Enemy
@@ -4613,6 +4646,7 @@ MonoBehaviour:
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
+  animEnemy: {fileID: 1025856387}
   shootSpeed: 50
   shootPoint: {fileID: 727631321}
   shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
@@ -4725,9 +4759,8 @@ Transform:
   - {fileID: 703872952}
   - {fileID: 727631321}
   - {fileID: 1575560516}
-  - {fileID: 2131568910}
-  m_Father: {fileID: 1749601554}
-  m_RootOrder: 2
+  m_Father: {fileID: 978034493}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1025856385
 CircleCollider2D:
@@ -4761,6 +4794,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.15275049, y: -0.2638411}
   m_Size: {x: 0.98118114, y: 1.4684311}
   m_Direction: 0
+--- !u!95 &1025856387
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025856379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7bb6507928451e4f9c6531d5629884d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1042555624
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,6 +5513,7 @@ GameObject:
   - component: {fileID: 1209078943}
   - component: {fileID: 1209078942}
   - component: {fileID: 1209078941}
+  - component: {fileID: 1209078948}
   m_Layer: 9
   m_Name: DailerRed
   m_TagString: Enemy
@@ -5486,6 +5539,7 @@ MonoBehaviour:
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
+  animEnemy: {fileID: 1209078948}
   shootSpeed: 40
   shootPoint: {fileID: 1938103311}
   shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
@@ -5634,6 +5688,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.12215209, y: -0.17508441}
   m_Size: {x: 0.64459944, y: 0.97354424}
   m_Direction: 0
+--- !u!95 &1209078948
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209078940}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7bb6507928451e4f9c6531d5629884d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1213999836
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,6 +7262,7 @@ GameObject:
   - component: {fileID: 1609848381}
   - component: {fileID: 1609848380}
   - component: {fileID: 1609848379}
+  - component: {fileID: 1609848386}
   m_Layer: 9
   m_Name: DailerGreen
   m_TagString: Enemy
@@ -7214,6 +7288,7 @@ MonoBehaviour:
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
+  animEnemy: {fileID: 1609848386}
   shootSpeed: 30
   shootPoint: {fileID: 570678715}
   shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
@@ -7320,7 +7395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609848378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.54, y: 2.162, z: 0}
+  m_LocalPosition: {x: -7.54, y: 2.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1999948596}
@@ -7361,6 +7436,25 @@ CircleCollider2D:
   m_Offset: {x: 0.19588748, y: 0.49}
   serializedVersion: 2
   m_Radius: 0.17827617
+--- !u!95 &1609848386
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609848378}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7bb6507928451e4f9c6531d5629884d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1614492790
 GameObject:
   m_ObjectHideFlags: 0
@@ -8171,7 +8265,7 @@ Transform:
   m_Children:
   - {fileID: 1609848383}
   - {fileID: 1209078945}
-  - {fileID: 1025856384}
+  - {fileID: 978034493}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9715,7 +9809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de02ceed6ae44d24087481c974d74d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1362631670}
+  animWire: {fileID: 1362631670}
   menuUI: {fileID: 274278979}
   gameUI: {fileID: 955959520}
   helpText: {fileID: 945250257}
@@ -9958,7 +10052,7 @@ GameObject:
   - component: {fileID: 2131568908}
   - component: {fileID: 2131568907}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10038,12 +10132,12 @@ RectTransform:
   - {fileID: 232368680}
   - {fileID: 665390024}
   - {fileID: 1846313459}
-  m_Father: {fileID: 1025856384}
-  m_RootOrder: 3
+  m_Father: {fileID: 978034493}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.020000458, y: 1.625}
+  m_AnchoredPosition: {x: 7.01, y: -0.7149999}
   m_SizeDelta: {x: 800, y: 359.6337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2133963117

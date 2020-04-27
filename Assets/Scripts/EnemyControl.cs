@@ -10,6 +10,7 @@ public class EnemyControl : MonoBehaviour
     [SerializeField] private Vector2 radarArea = Vector2.one;
     public LayerMask radarOverlapLayer;
     private bool playerDetect = false;
+    [SerializeField] private Animator animEnemy = null;
 
     private float lastShotTime;
     [SerializeField] private float shootSpeed = 100f;
@@ -35,14 +36,17 @@ public class EnemyControl : MonoBehaviour
 
         if (playerDetect && Time.time > lastShotTime)
         {
-            if (radarCollider.transform.position.x > transform.position.x) 
+            animEnemy.enabled = true;
+
+            if (radarCollider.transform.position.x > transform.position.x)
                 GetComponent<SpriteRenderer>().flipX = true;
-            else if (radarCollider.transform.position.x < transform.position.x) 
+            else if (radarCollider.transform.position.x < transform.position.x)
                 GetComponent<SpriteRenderer>().flipX = false;
 
             Shoot();
-            lastShotTime = Time.time + 0.2f;
+            lastShotTime = Time.time + 0.3f;
         }
+        else if (!playerDetect) animEnemy.enabled = false;
     }
 
     private void Shoot()

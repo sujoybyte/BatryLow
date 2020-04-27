@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
 {
-    [SerializeField] private Animator anim = null;
+    [SerializeField] private Animator animWire = null;
     [SerializeField] private GameObject menuUI = null, gameUI = null, helpText = null, aboutText = null;
     [SerializeField] private GameObject buttons = null;
     [SerializeField] private Button playButton = null;
@@ -13,7 +13,7 @@ public class GameControl : MonoBehaviour
 
     private void Start()
     {
-        anim.enabled = false;
+        animWire.enabled = false;
         menuUI.SetActive(true);
         playButton.interactable = true;
         gameUI.SetActive(false);
@@ -33,7 +33,7 @@ public class GameControl : MonoBehaviour
     public void Play()
     {
         playButton.interactable = false;
-        anim.enabled = true;
+        animWire.enabled = true;
         winner.SetActive(false);
         restart.SetActive(false);
         StartCoroutine(SwitchCanvas());
@@ -58,7 +58,7 @@ public class GameControl : MonoBehaviour
 
     public void About()
     {
-        anim.enabled = false;
+        animWire.enabled = false;
         menuUI.SetActive(true);
         gameUI.SetActive(false);
         winner.SetActive(false);
