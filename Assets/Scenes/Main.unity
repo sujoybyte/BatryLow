@@ -1264,7 +1264,8 @@ MonoBehaviour:
   overlapingLayer:
     serializedVersion: 2
     m_Bits: 1024
-  shooter: {fileID: 7891539301782619409, guid: 0ab739a37b1d0fc46b13c4e65c3c81ed, type: 3}
+  shootSpeed: 20
+  shooter: {fileID: 8902821478769596011, guid: 7fe4835bb16e8664abdcc8886dbbbbaf, type: 3}
   shootPoint: {fileID: 1771916100}
   playerHealth: 1
   healthReduceRate: 0.01
@@ -1943,7 +1944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570678714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.69, y: 0.109999895, z: -3.959998}
+  m_LocalPosition: {x: 0.789, y: 0.109999895, z: -3.959998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1609848383}
@@ -2692,7 +2693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727631320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4900002, y: 0.109999895, z: -3.959998}
+  m_LocalPosition: {x: -1.51, y: 0.109999895, z: -3.959998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1025856384}
@@ -3279,7 +3280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885368235}
   m_LocalRotation: {x: -0, y: -0, z: 0.70407176, w: -0.7101289}
-  m_LocalPosition: {x: 7.86, y: 0.59, z: 0}
+  m_LocalPosition: {x: 7.44, y: 0.59, z: 0}
   m_LocalScale: {x: 0.45030308, y: 0.66119295, z: 1}
   m_Children: []
   m_Father: {fileID: 861710014}
@@ -3678,7 +3679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909883508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8900003, y: -0.41999996, z: 0}
+  m_LocalPosition: {x: -2.7100003, y: -0.41999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 888149875}
@@ -3777,7 +3778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923825939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.7799997, y: 1.2, z: 0}
+  m_LocalPosition: {x: -7.5129995, y: 1.2030001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 888149875}
@@ -4582,11 +4583,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1025856384}
   - component: {fileID: 1025856383}
-  - component: {fileID: 1025856381}
-  - component: {fileID: 1025856380}
   - component: {fileID: 1025856386}
   - component: {fileID: 1025856385}
   - component: {fileID: 1025856382}
+  - component: {fileID: 1025856381}
+  - component: {fileID: 1025856380}
   m_Layer: 9
   m_Name: DailerBlue
   m_TagString: Enemy
@@ -4612,9 +4613,9 @@ MonoBehaviour:
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
+  shootSpeed: 50
   shootPoint: {fileID: 727631321}
-  shooter: {fileID: 7891539301782619409, guid: 0ab739a37b1d0fc46b13c4e65c3c81ed, type: 3}
-  shootSpeed: 200
+  shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
   enemyHealth: 1
   healthReduceRate: 0.02
   gameControl: {fileID: 2093464245}
@@ -5485,9 +5486,9 @@ MonoBehaviour:
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
+  shootSpeed: 40
   shootPoint: {fileID: 1938103311}
-  shooter: {fileID: 7891539301782619409, guid: 0ab739a37b1d0fc46b13c4e65c3c81ed, type: 3}
-  shootSpeed: 150
+  shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
   enemyHealth: 1
   healthReduceRate: 0.03
   gameControl: {fileID: 2093464245}
@@ -5591,7 +5592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209078940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.91, y: 2.3, z: 0}
+  m_LocalPosition: {x: 7.6, y: 2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1477820233}
@@ -5660,7 +5661,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213999836}
   m_LocalRotation: {x: -0, y: -0, z: 0.70407176, w: -0.7101289}
-  m_LocalPosition: {x: -2.89, y: -1.16, z: 0}
+  m_LocalPosition: {x: -2.71, y: -1.16, z: 0}
   m_LocalScale: {x: 0.45030308, y: 0.66119295, z: 1}
   m_Children: []
   m_Father: {fileID: 861710014}
@@ -6067,7 +6068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341828670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.77, y: 0.46, z: 0}
+  m_LocalPosition: {x: 2.6100001, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 888149875}
@@ -7213,9 +7214,9 @@ MonoBehaviour:
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
+  shootSpeed: 30
   shootPoint: {fileID: 570678715}
-  shooter: {fileID: 7891539301782619409, guid: 0ab739a37b1d0fc46b13c4e65c3c81ed, type: 3}
-  shootSpeed: 100
+  shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
   enemyHealth: 1
   healthReduceRate: 0.04
   gameControl: {fileID: 2093464245}
@@ -7319,7 +7320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609848378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.627, y: 2.162, z: 0}
+  m_LocalPosition: {x: -7.54, y: 2.162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1999948596}
@@ -8011,7 +8012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713648459}
   m_LocalRotation: {x: -0, y: -0, z: 0.70407176, w: -0.7101289}
-  m_LocalPosition: {x: -7.787, y: 0.44699997, z: 0}
+  m_LocalPosition: {x: -7.52, y: 0.45, z: 0}
   m_LocalScale: {x: 0.45030308, y: 0.66119295, z: 1}
   m_Children: []
   m_Father: {fileID: 861710014}
@@ -8201,7 +8202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752840018}
   m_LocalRotation: {x: -0, y: -0, z: 0.70407176, w: -0.7101289}
-  m_LocalPosition: {x: 2.81, y: -0.29, z: 0}
+  m_LocalPosition: {x: 2.65, y: -0.29, z: 0}
   m_LocalScale: {x: 0.45030308, y: 0.66119295, z: 1}
   m_Children: []
   m_Father: {fileID: 861710014}
@@ -9649,7 +9650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090753592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.84, y: 1.35, z: 0}
+  m_LocalPosition: {x: 7.42, y: 1.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 888149875}
@@ -9720,6 +9721,7 @@ MonoBehaviour:
   helpText: {fileID: 945250257}
   aboutText: {fileID: 1831116444}
   buttons: {fileID: 1197441387}
+  playButton: {fileID: 1948414246}
   winner: {fileID: 2069738199}
   restart: {fileID: 1285496292}
 --- !u!1 &2102738386

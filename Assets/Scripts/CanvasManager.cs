@@ -24,7 +24,7 @@ public class CanvasManager : MonoBehaviour
     public Slider rEnemyHealth, gEnemyHealth, bEnemyHealth;
     public GameObject rEnemyFill, gEnemyFill, bEnemyFill;
 
-    void Start()
+    private void Start()
     {
         player = playerObject.GetComponent<PlayerControl>();
         rEnemy = rEnemyObject.GetComponent<EnemyControl>();
@@ -34,7 +34,7 @@ public class CanvasManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (enemy.GetComponentsInChildren<Transform>().Length == 0)
         {

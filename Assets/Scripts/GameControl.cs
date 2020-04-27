@@ -1,25 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
 {
-    public Animator anim;
-    public GameObject menuUI, gameUI;
-    public GameObject helpText, aboutText;
-    public GameObject buttons;
-    public GameObject winner, restart;
+    [SerializeField] private Animator anim = null;
+    [SerializeField] private GameObject menuUI = null, gameUI = null, helpText = null, aboutText = null;
+    [SerializeField] private GameObject buttons = null;
+    [SerializeField] private Button playButton = null;
+    [SerializeField] private GameObject winner = null, restart = null;
 
-    void Start()
+    private void Start()
     {
         anim.enabled = false;
         menuUI.SetActive(true);
+        playButton.interactable = true;
         gameUI.SetActive(false);
         winner.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -30,6 +32,7 @@ public class GameControl : MonoBehaviour
 
     public void Play()
     {
+        playButton.interactable = false;
         anim.enabled = true;
         winner.SetActive(false);
         restart.SetActive(false);

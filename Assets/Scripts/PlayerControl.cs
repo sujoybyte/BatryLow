@@ -11,7 +11,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Transform playerFeet = null;
     public LayerMask overlapingLayer;
     private float maxJump = 2;
-    
+
+    private float lastShotTime;
+    [SerializeField] private float shootSpeed = 100f;
     [SerializeField] private GameObject shooter = null;
     [SerializeField] private Transform shootPoint = null;
     private GameObject shooterCopy;
@@ -23,7 +25,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private GameObject helpText = null;
     [SerializeField] private GameObject restart = null;
 
-    void Start()
+    private void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
         canvasControl = GetComponent<CanvasManager>();
@@ -35,12 +37,14 @@ public class PlayerControl : MonoBehaviour
         float moveDirection = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.A) || moveDirection < 0)
         {
+            DisableHelpText();
             transform.Translate(new Vector2(moveDirection * Time.deltaTime * moveSpeed, 0f));
             playerSprite.flipX = true;
             shootPoint.localPosition = new Vector2(-1f, shootPoint.localPosition.y);
         }
         else if (Input.GetKeyDown(KeyCode.D) || moveDirection > 0)
         {
+            DisableHelpText();
             transform.Translate(new Vector2(moveDirection * Time.deltaTime * moveSpeed, 0f));
             playerSprite.flipX = false;
             shootPoint.localPosition = new Vector2(1f, shootPoint.localPosition.y);
@@ -63,22 +67,26 @@ public class PlayerControl : MonoBehaviour
         }
 
         // player shoot
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.S))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.S)) && Time.time > lastShotTime)
         {
-            DisableHelpText();
-
-            float direction = 1f;
-            if (!GetComponent<SpriteRenderer>().flipX)
-                direction = 1f;
-            else if (GetComponent<SpriteRenderer>().flipX)
-                direction = -1f;
-
-            shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
-            shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * 200f, 0f));
+            lastShotTime = Time.time + 0.1f;
+            Shot();
         }
     }
 
-    public void DisableHelpText()
+    private void Shot()
+    {
+        float direction = 1f;
+        if (!GetComponent<SpriteRenderer>().flipX)
+            direction = 1f;
+        else if (GetComponent<SpriteRenderer>().flipX)
+            direction = -1f;
+        
+        shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
+        shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * shootSpeed, 0f));
+    }
+
+    private void DisableHelpText()
     {
         if (helpText.activeSelf) helpText.SetActive(false);
     }
@@ -107,7 +115,8 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator Restarting()
     {
-        yield return new WaitForSeconds(3f);
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(2.2f);
         SceneManager.LoadScene(0);
     }
 }

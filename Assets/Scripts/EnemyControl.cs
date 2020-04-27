@@ -12,10 +12,10 @@ public class EnemyControl : MonoBehaviour
     private bool playerDetect = false;
 
     private float lastShotTime;
+    [SerializeField] private float shootSpeed = 100f;
     [SerializeField] private Transform shootPoint = null;
     [SerializeField] private GameObject shooter = null;
     private GameObject shooterCopy;
-    [SerializeField] private float shootSpeed = 200f;
 
     public float enemyHealth = 1f;
     public float healthReduceRate = 0.05f;
@@ -41,13 +41,12 @@ public class EnemyControl : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
 
             Shoot();
-            lastShotTime = Time.time + 0.4f;
+            lastShotTime = Time.time + 0.2f;
         }
     }
 
     private void Shoot()
     {
-        Debug.Log("Player Shoot");
         float direction = -1f;
         if (GetComponent<SpriteRenderer>().flipX)
             direction = 1f;
