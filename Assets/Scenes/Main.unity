@@ -2557,11 +2557,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703872951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.06, y: 0.28, z: 0}
-  m_LocalScale: {x: 80, y: 20, z: 1}
+  m_LocalPosition: {x: 2.2299995, y: -2.06, z: 0}
+  m_LocalScale: {x: 100, y: 30, z: 1}
   m_Children: []
-  m_Father: {fileID: 1025856384}
-  m_RootOrder: 0
+  m_Father: {fileID: 978034493}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &703872953
 SpriteRenderer:
@@ -2603,7 +2603,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.17515129, g: 0.55504143, b: 0.858, a: 0.28235295}
+  m_Color: {r: 0.17515129, g: 0.55504143, b: 0.858, a: 0.3254902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2905,7 +2905,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1025856384}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &745416421
 GameObject:
@@ -4496,6 +4496,7 @@ Transform:
   m_Children:
   - {fileID: 2131568910}
   - {fileID: 1025856384}
+  - {fileID: 703872952}
   m_Father: {fileID: 1749601554}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4820,7 +4821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyNumber: 2
   raderStart: {fileID: 703872952}
-  radarArea: {x: 10.04, y: 2.75}
+  radarArea: {x: 12.8, y: 3.24}
   radarOverlapLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -4831,6 +4832,8 @@ MonoBehaviour:
   shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
   enemyHealth: 1
   healthReduceRate: 0.03
+  mist: {fileID: 703872953}
+  playerControl: {fileID: 375655111}
   gameControl: {fileID: 2093464245}
   enemyNameText: {fileID: 822741804}
   orb: {fileID: 7993386574280017466, guid: dc9857c0412e96c41b26354ceb6a49f9, type: 3}
@@ -4936,7 +4939,6 @@ Transform:
   m_LocalPosition: {x: 6.99, y: -2.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 703872952}
   - {fileID: 727631321}
   - {fileID: 1575560516}
   m_Father: {fileID: 978034493}
@@ -5726,6 +5728,8 @@ MonoBehaviour:
   shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
   enemyHealth: 1
   healthReduceRate: 0.04
+  mist: {fileID: 703872953}
+  playerControl: {fileID: 375655111}
   gameControl: {fileID: 2093464245}
   enemyNameText: {fileID: 1346912104}
   orb: {fileID: 7993386574280017466, guid: dc9857c0412e96c41b26354ceb6a49f9, type: 3}
@@ -7401,7 +7405,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1025856384}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1575560517
 BoxCollider2D:
@@ -7477,6 +7481,8 @@ MonoBehaviour:
   shooter: {fileID: 6446458059463079791, guid: bff11563870a91d4c952e5a56c7c7df6, type: 3}
   enemyHealth: 1
   healthReduceRate: 0.04
+  mist: {fileID: 703872953}
+  playerControl: {fileID: 375655111}
   gameControl: {fileID: 2093464245}
   enemyNameText: {fileID: 907870145}
   orb: {fileID: 7993386574280017466, guid: dc9857c0412e96c41b26354ceb6a49f9, type: 3}

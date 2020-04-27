@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
     [SerializeField] private Animator animWire = null;
-    [SerializeField] private GameObject menuUI = null, gameUI = null, helpText = null, aboutText = null;
+    [SerializeField] private GameObject menuUI = null, gameUI = null;
+    [SerializeField] private GameObject helpText = null, aboutText = null;
     [SerializeField] private GameObject buttons = null;
     [SerializeField] private Button playButton = null;
     [SerializeField] private GameObject winner = null, restart = null;
@@ -20,7 +21,6 @@ public class GameControl : MonoBehaviour
         winner.SetActive(false);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -49,7 +49,6 @@ public class GameControl : MonoBehaviour
 
     public void Win()
     {
-        Debug.Log("bffbrf");
         winner.SetActive(true);
         menuUI.SetActive(false);
         gameUI.SetActive(false);

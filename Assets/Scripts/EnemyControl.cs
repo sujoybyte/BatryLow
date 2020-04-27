@@ -22,6 +22,10 @@ public class EnemyControl : MonoBehaviour
 
     public float enemyHealth = 1f;
     [SerializeField] private float healthReduceRate = 0.05f;
+    [SerializeField] private SpriteRenderer mist = null;
+    private Vector2 dMistPosition;
+    private bool gEnemyDead = false, rEnemyDead = false;
+    public PlayerControl playerControl;
     public GameControl gameControl;
     [SerializeField] private GameObject enemyNameText = null;
     [SerializeField] private GameObject orb = null;
@@ -31,20 +35,26 @@ public class EnemyControl : MonoBehaviour
     {
         lastShotTime = Time.time;
         enemySprite = GetComponent<SpriteRenderer>();
+        dMistPosition = mist.transform.position;
     }
 
     private void Update()
     {
-        if (enemyNumber == 2 && gEnemySlider.value == 0)
+        if (enemyNumber == 2 && gEnemySlider.value == 0) gEnemyDead = true;
+        if (enemyNumber == 2 && rEnemySlider.value == 0) rEnemyDead = true;
+
+        if (gEnemyDead)
         {
             gEnemySlider.gameObject.SetActive(false);
             enemySprite.color = new Color(1f, 0.6f, 0.6f);
+            mist.transform.position = new Vector2(dMistPosition.x + 3f, dMistPosition.y);
         }
-        if (enemyNumber == 2 && gEnemySlider.value == 0 && rEnemySlider.value == 0)
+        if (rEnemyDead)
         {
-            gEnemySlider.gameObject.SetActive(false);
             rEnemySlider.gameObject.SetActive(false);
+            gEnemySlider.gameObject.SetActive(false);
             enemySprite.color = new Color(1f, 0f, 0f);
+            mist.transform.position = new Vector2(dMistPosition.x + 7f, dMistPosition.y);
         }
     }
 
@@ -56,6 +66,8 @@ public class EnemyControl : MonoBehaviour
         if (playerDetect && Time.time > lastShotTime)
         {
             animEnemy.enabled = true;
+            mist.enabled = true;
+            if (enemyNumber == 2) playerControl.playerHealth -= 0.005f;
 
             if (radarCollider.transform.position.x > transform.position.x)
                 enemySprite.flipX = true;
@@ -65,7 +77,10 @@ public class EnemyControl : MonoBehaviour
             Shoot();
             lastShotTime = Time.time + shootInterval;
         }
-        else if (!playerDetect) animEnemy.enabled = false;
+        else if (!playerDetect)
+        {
+            animEnemy.enabled = false;
+        }
     }
 
     private void Shoot()

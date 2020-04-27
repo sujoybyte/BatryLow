@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject shooterCopy;
 
     public float playerHealth = 1f;
-    public float healthReduceRate = 0.05f;
+    [SerializeField] private float healthReduceRate = 0.05f;
     public GameObject canvasObject;
     [HideInInspector] public CanvasManager canvasControl;
     [SerializeField] private GameObject helpText = null;
@@ -115,7 +115,7 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator Restarting()
     {
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);
     }
 }
