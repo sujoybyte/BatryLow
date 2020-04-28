@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
     [SerializeField] private Animator animWire = null;
     [SerializeField] private GameObject menuUI = null, gameUI = null;
     [SerializeField] private GameObject helpText = null, aboutText = null;
-    [SerializeField] private GameObject buttons = null;
+    [SerializeField] private GameObject buttons = null, phoneBlush = null;
     [SerializeField] private Button playButton = null;
     [SerializeField] private GameObject winner = null, restart = null;
 
@@ -41,7 +41,9 @@ public class GameControl : MonoBehaviour
 
     private IEnumerator SwitchCanvas()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.9f);
+        phoneBlush.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
         gameUI.SetActive(true);
         menuUI.SetActive(false);
         helpText.SetActive(true);
