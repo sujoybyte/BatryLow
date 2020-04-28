@@ -25,6 +25,7 @@ public class EnemyControl : MonoBehaviour
     [SerializeField] private SpriteRenderer mist = null;
     private Vector2 dMistPosition;
     private bool gEnemyDead = false, rEnemyDead = false;
+    public bool bossFight = false;
     public PlayerControl playerControl;
     public GameControl gameControl;
     [SerializeField] private GameObject enemyNameText = null;
@@ -55,6 +56,7 @@ public class EnemyControl : MonoBehaviour
             gEnemySlider.gameObject.SetActive(false);
             enemySprite.color = new Color(1f, 0f, 0f);
             mist.transform.position = new Vector2(dMistPosition.x + 7f, dMistPosition.y);
+            bossFight = true;
         }
     }
 
@@ -63,7 +65,7 @@ public class EnemyControl : MonoBehaviour
         Collider2D radarCollider = Physics2D.OverlapBox(raderStart.position, radarArea, 0f, radarOverlapLayer);
         playerDetect = radarCollider;
 
-        if (playerDetect && Time.time > lastShotTime)
+        if (playerDetect && Time.time > lastShotTime && !bossFight)
         {
             animEnemy.enabled = true;
             mist.enabled = true;
@@ -77,9 +79,13 @@ public class EnemyControl : MonoBehaviour
             Shoot();
             lastShotTime = Time.time + shootInterval;
         }
-        else if (!playerDetect)
+        else if (!playerDetect) animEnemy.enabled = false;
+        
+        if (bossFight && Time.time > lastShotTime)
         {
-            animEnemy.enabled = false;
+            animEnemy.enabled = true;
+            Shoot();
+            lastShotTime = Time.time + (shootInterval - 0.1f);
         }
     }
 
@@ -94,7 +100,7 @@ public class EnemyControl : MonoBehaviour
         shooterCopy = Instantiate(shooter, shootPoint.position, Quaternion.identity);
         if (enemyNumber == 0) shooterCopy.GetComponent<SpriteRenderer>().color = Color.green;
         if (enemyNumber == 1) shooterCopy.GetComponent<SpriteRenderer>().color = Color.red;
-        if (enemyNumber == 2) shooterCopy.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 1f);
+        if (enemyNumber == 2) shooterCopy.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 0.7f);
         shooterCopy.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * shootSpeed, 0f));
     }
     
@@ -111,7 +117,6 @@ public class EnemyControl : MonoBehaviour
         {
             Destroy(bullet);
 
-            // enemy health reduce
             if (enemyNumber < 2 || (enemyNumber == 2 && rEnemySlider.value == 0 && gEnemySlider.value == 0))
                 enemyHealth -= healthReduceRate;
 
@@ -121,7 +126,7 @@ public class EnemyControl : MonoBehaviour
                 else if (enemyNumber < 2) Instantiate(orb, transform.position, transform.rotation);
 
                 enemyNameText.SetActive(false);
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
     }
